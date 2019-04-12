@@ -32,7 +32,6 @@ describe('game tests',() => {
   });
 
   test('game should have two players', () => {
-    console.log(topTrumps.players[0].deck);
     expect(topTrumps.players.length).toBe(2);
   });
 
@@ -47,36 +46,55 @@ describe('game tests',() => {
   });
 
   test('a player should be able to play the top card in their deck', () => {
-    ichi.playTopCard();
-    console.log(topTrumps.played);
-    expect(topTrumps.played.length).toBe(1);
+    topTrumps.addToPlayed();
+    expect(topTrumps.played.length).toBe(2);
   });
 
   test('a player should be able to select a category to play with', () => {
-    topTrumps.selectCategory('Strength'); // needs to reverse players after each turn
-    expect(topTrumps.critetia).toBe('Strength');
+    topTrumps.selectCategory('strength');
+    expect(topTrumps.criteria).toBe('strength');
   });
 
-  test('the game should be able to determine round winner', () => {
-    expect(topTrumps.playRound('Strength')).toBe('ni');
+  test('expects determine winner function to work', () => {
+    topTrumps.addToPlayed();
+    topTrumps.selectCategory('strength');
+    expect(topTrumps.determineWinner()).toBe('ni');
   });
 
-  test('if the categories are tied, the result is a draw', () => {
-    expect(topTrumps.playRound('Intelligence')).toBe('ichi');
+  test('expects remove from hand function to work', () => {
+    ichi.removeCardFromHand();
+    expect(ichi.deck.length).toBe(2);
+  })
+
+  test('expects play round function to work', () => {
+    expect(topTrumps.playRound('strength')).toBe('ni');
+  });
+
+  test('if the categories are tied, the result is that selecting player wins', () => {
+    expect(topTrumps.playRound('intelligence')).toBe('ichi');
   });
 
   test('the winner should recieve both cards at the end of the round', () => {;
-    topTrumps.allocateCards('Strength');
-    expect(ni.cards.length).toBe(4);
-    expect(ichi.cards.length).toBe(2);
+    topTrumps.allocateCards('strength');
+    expect(ni.deck.length).toBe(4);
+    expect(ichi.deck.length).toBe(2);
   });
 
   test('the winner choses the category', () => {
-    topTrumps.playRound('Strength');
+    topTrumps.playRound('strength');
     expect(topTrumps.players[0].name).toBe('ni');
   });
 
+  test('expects check winner function to work', () => {
+    let san = new Player('san');
+    san.deck = [];
+    topTrumps.players.shift();
+    topTrumps.players.push(san);
+    topTrumps.checkIfOverallWinner();
+    expect(topTrumps.overallWinner).toBe('ni');
+  })
+
   test('winner declared when one player has all the cards', () => {
-    expect(topTrumps.playFullGame()).toBe('ni');
+    expect(topTrumps.playFullGame()).toBeTruthy();
   });
 })
