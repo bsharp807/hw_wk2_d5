@@ -17,11 +17,11 @@ describe('game tests',() => {
 
   beforeEach(() => {
     batman = new Card('Batman', 10, 8, 9);
-    superman = new Card('Superman', 10, 10, 10);
-    captainMarvel = new Card('Captain Marvel', 8, 10, 10);
-    nickFrost = new Card('Nick Frost', 8, 6, 5);
-    blackWidow = new Card('Black Widow', 9, 4, 8);
-    wonderWoman = new Card('Wonder Woman', 7, 10, 7);
+    superman = new Card('Superman', 10, 1000, 10);
+    captainMarvel = new Card('Captain Marvel', 1, 1, 1);
+    nickFrost = new Card('Nick Frost', 8, 1000, 5);
+    blackWidow = new Card('Black Widow', 1, 1, 1);
+    wonderWoman = new Card('Wonder Woman', 7, 1000, 7);
 
     ichi = new Player('ichi');
     ni = new Player('ni');

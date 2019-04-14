@@ -99,8 +99,26 @@ class Game{
   playFullGame(){
     // loop until one player has 6 cards
     while(!this.overallWinner){
-      this.checkIfOverallWinner();
-      this.allocateCards('strength');
+    this.checkIfOverallWinner();
+    this.allocateCards('strength');
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    // this.allocateCards(this.rand(this.abilities));
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    // this.allocateCards(this.rand(this.abilities));
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    // this.allocateCards(this.rand(this.abilities));
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    // this.allocateCards(this.rand(this.abilities));
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    // this.allocateCards(this.rand(this.abilities));
+    // console.log(this.players[0].deck);
+    // console.log(this.players[1].deck);
+    this.checkIfOverallWinner();
     }
   return this.overallWinner;
   }
